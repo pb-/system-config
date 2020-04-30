@@ -20,6 +20,8 @@
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "nodev"; # or "nodev" for efi only
 
+  services.tlp.enable = true;
+
   networking.hostName = "caesium"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
@@ -59,10 +61,20 @@
     EDITOR = "vim";
   };
 
+  environment.shellAliases = {
+    glc = "git log --graph --oneline --decorate";
+    gcaan = "git commit -a --amend --no-edit";
+    gg = "git grep";
+    ggi = "git grep -i";
+    gfg = "git ls-files | grep -i";
+    cat = "bat -p";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     (neovim.override { vimAlias = true; })
+    bat
     brightnessctl
     clojure
     feh
@@ -74,6 +86,9 @@
     mplayer
     openssl
     pavucontrol
+    pipenv
+    powertop
+    python3
     scrot
     spotify
     termite
@@ -99,6 +114,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -129,6 +145,12 @@
 
   programs.xss-lock.enable = true;
   programs.xss-lock.lockerCommand = "${pkgs.i3lock}/bin/i3lock -n -c 202020";
+
+  # Auto login.
+  services.xserver.displayManager.defaultSession = "none+i3";
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.autoLogin.enable = true;
+  services.xserver.displayManager.lightdm.autoLogin.user = "pb";
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
