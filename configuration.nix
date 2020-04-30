@@ -73,6 +73,7 @@
     (neovim.override { vimAlias = true; })
     openssl
     scrot
+    spotify
     termite
     wget
     xorg.xkbcomp
