@@ -69,6 +69,7 @@
     git
     gnumake
     gnupg
+    msgpack
     (neovim.override { vimAlias = true; })
     openssl
     scrot

@@ -30,7 +30,7 @@
     { device = "/dev/disk/by-uuid/D1B1-740A";
       fsType = "vfat";
     };
-    
+
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/75bcbb0c-1eb5-4e03-a302-fcbfa6b763d6";
       fsType = "ext4";
