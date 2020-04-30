@@ -62,6 +62,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    (neovim.override { vimAlias = true; })
     brightnessctl
     clojure
     feh
@@ -70,8 +71,9 @@
     git
     gnumake
     gnupg
-    (neovim.override { vimAlias = true; })
+    mplayer
     openssl
+    pavucontrol
     scrot
     spotify
     termite
@@ -107,9 +109,13 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -122,7 +128,7 @@
   services.xserver.xkbOptions = "caps:super";
 
   programs.xss-lock.enable = true;
-  programs.xss-lock.extraOptions = [ "-n" "-c" "202020" ];
+  programs.xss-lock.lockerCommand = "${pkgs.i3lock}/bin/i3lock -n -c 202020";
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
