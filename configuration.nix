@@ -55,6 +55,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  environment.variables = {
+    EDITOR = "vim";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -65,11 +69,12 @@
     git
     gnumake
     gnupg
-    neovim
+    (neovim.override { vimAlias = true; })
     openssl
     scrot
     termite
     wget
+    xorg.xkbcomp
   ];
 
   fonts.fonts = with pkgs; [
@@ -106,11 +111,16 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
   services.xserver.windowManager.i3.enable = true;
   services.xserver.autoRepeatDelay = 330;
   services.xserver.autoRepeatInterval = 25;
+
+  services.xserver.layout = "us";
+  services.xserver.xkbVariant = "altgr-intl";
+  services.xserver.xkbOptions = "caps:super";
+
+  programs.xss-lock.enable = true;
+  programs.xss-lock.extraOptions = [ "-n" "-c" "202020" ];
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
