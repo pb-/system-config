@@ -76,6 +76,7 @@
     (neovim.override { vimAlias = true; })
     bat
     brightnessctl
+    caffeine-ng
     clojure
     feh
     file
