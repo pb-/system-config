@@ -74,6 +74,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     (neovim.override { vimAlias = true; })
+    (texlive.combine { inherit (texlive) scheme-basic standalone microtype pgf xkeyval xcolor; })
     bat
     brightnessctl
     caffeine-ng
@@ -94,6 +95,7 @@
     spotify
     termite
     wget
+    whois
     xorg.xkbcomp
   ];
 
