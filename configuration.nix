@@ -90,6 +90,7 @@
     pavucontrol
     pipenv
     powertop
+    pwgen
     python3
     scrot
     spotify
