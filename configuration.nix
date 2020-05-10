@@ -79,6 +79,7 @@
     brightnessctl
     caffeine-ng
     clojure
+    ettercap
     feh
     file
     firefox
