@@ -4,7 +4,54 @@
 
 { config, pkgs, ... }:
 
-{
+let
+  # TODO figure out how to move this somewhere less intrusive.
+  customLayout = pkgs.writeText "layout" ''
+    xkb_keymap {
+      xkb_keycodes {
+        include "evdev+aliases(qwerty)"
+      };
+
+      xkb_types {
+        include "complete"
+      };
+
+      xkb_compatibility {
+        include "complete"
+
+        interpret Overlay1_Enable {
+          action = SetControls(controls=overlay1);
+        };
+      };
+
+      xkb_symbols {
+        include "pc+us(altgr-intl)+inet(evdev)+capslock(super)"
+
+        key <LWIN> {
+            type[Group1] = "ONE_LEVEL",
+            symbols[Group1] = [ Overlay1_Enable ]
+        };
+
+        key <PRSC> { [ Super_R ] };
+
+        # AC06..09 -> H..L
+        key <AC06> { overlay1 = <LEFT> };
+        key <AC07> { overlay1 = <DOWN> };
+        key <AC08> { overlay1 =   <UP> };
+        key <AC09> { overlay1 = <RGHT> };
+
+        # AD06..09 -> Y..O
+        key <AD06> { overlay1 = <HOME> };
+        key <AD07> { overlay1 = <PGDN> };
+        key <AD08> { overlay1 = <PGUP> };
+        key <AD09> { overlay1 =  <END> };
+      };
+    };
+  '';
+  compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
+    ${pkgs.xorg.xkbcomp}/bin/xkbcomp -w 0 ${customLayout} $out
+  '';
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -144,10 +191,6 @@
   services.xserver.autoRepeatDelay = 330;
   services.xserver.autoRepeatInterval = 25;
 
-  services.xserver.layout = "us";
-  services.xserver.xkbVariant = "altgr-intl";
-  services.xserver.xkbOptions = "caps:super";
-
   programs.xss-lock.enable = true;
   programs.xss-lock.lockerCommand = "${pkgs.i3lock}/bin/i3lock -n -c 202020";
 
@@ -156,6 +199,7 @@
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.lightdm.autoLogin.enable = true;
   services.xserver.displayManager.lightdm.autoLogin.user = "pb";
+  services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
