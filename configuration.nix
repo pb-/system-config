@@ -133,6 +133,7 @@ in {
     git
     gnumake
     gnupg
+    gnuplot
     mplayer
     openssl
     pavucontrol
