@@ -76,12 +76,14 @@ in {
     clojure
     ettercap
     feh
+    ffmpeg
     file
     firefox
     git
     gnumake
     gnupg
     gnuplot
+    go
     mplayer
     openssl
     pavucontrol
