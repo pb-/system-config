@@ -9,6 +9,38 @@ let
     ${pkgs.xorg.xkbcomp}/bin/xkbcomp -w 0 ${files/keyboard-layout} $out
   '';
 in {
+  environment.systemPackages = with pkgs; [
+    (neovim.override { vimAlias = true; })
+    (texlive.combine { inherit (texlive) scheme-basic standalone microtype pgf xkeyval xcolor; })
+    bat
+    brightnessctl
+    caffeine-ng
+    clojure
+    ettercap
+    feh
+    ffmpeg
+    file
+    firefox
+    git
+    gnumake
+    gnupg
+    gnuplot
+    go
+    mplayer
+    openssl
+    pavucontrol
+    pipenv
+    powertop
+    pwgen
+    python3
+    scrot
+    spotify
+    termite
+    wget
+    whois
+    xorg.xkbcomp
+  ];
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -64,40 +96,6 @@ in {
     gfg = "git ls-files | grep -i";
     cat = "bat -p";
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    (neovim.override { vimAlias = true; })
-    (texlive.combine { inherit (texlive) scheme-basic standalone microtype pgf xkeyval xcolor; })
-    bat
-    brightnessctl
-    caffeine-ng
-    clojure
-    ettercap
-    feh
-    ffmpeg
-    file
-    firefox
-    git
-    gnumake
-    gnupg
-    gnuplot
-    go
-    mplayer
-    openssl
-    pavucontrol
-    pipenv
-    powertop
-    pwgen
-    python3
-    scrot
-    spotify
-    termite
-    wget
-    whois
-    xorg.xkbcomp
-  ];
 
   fonts.fonts = with pkgs; [
     corefonts
