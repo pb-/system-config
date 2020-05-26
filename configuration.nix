@@ -26,6 +26,7 @@ in {
     gnupg
     gnuplot
     go
+    httpie
     mplayer
     openssl
     pavucontrol
