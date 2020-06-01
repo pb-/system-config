@@ -43,6 +43,8 @@ in {
     xorg.xkbcomp
   ];
 
+  virtualisation.docker.enable = true;
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -83,6 +85,8 @@ in {
   services.redshift.temperature.night = 3000;
   location.latitude = 52.5;
   location.longitude = 13.4;
+
+  networking.firewall.allowedTCPPorts = [ 4711 ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -141,7 +145,7 @@ in {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pb = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" "docker"];
   };
 
   # This value determines the NixOS release from which the default
