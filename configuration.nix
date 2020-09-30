@@ -12,6 +12,7 @@ in {
   environment.systemPackages = with pkgs; [
     (neovim.override { vimAlias = true; })
     (texlive.combine { inherit (texlive) scheme-basic standalone microtype pgf xkeyval xcolor; })
+    android-studio
     bat
     brightnessctl
     caffeine-ng
@@ -27,6 +28,8 @@ in {
     gnuplot
     go
     httpie
+    lshw
+    minetest
     mplayer
     openssl
     pavucontrol
@@ -35,9 +38,12 @@ in {
     powertop
     pwgen
     python3
+    rlwrap
     scrot
     spotify
     termite
+    typespeed
+    unzip
     wget
     whois
     xorg.xkbcomp
@@ -131,6 +137,8 @@ in {
 
   programs.xss-lock.enable = true;
   programs.xss-lock.lockerCommand = "${pkgs.i3lock}/bin/i3lock -n -c 202020";
+
+  programs.adb.enable = true;
 
   # Auto login.
   services.xserver.displayManager.defaultSession = "none+i3";
