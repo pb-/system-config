@@ -143,8 +143,8 @@ in {
   # Auto login.
   services.xserver.displayManager.defaultSession = "none+i3";
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.lightdm.autoLogin.enable = true;
-  services.xserver.displayManager.lightdm.autoLogin.user = "pb";
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "pb";
   services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
 
   # Enable touchpad support.
