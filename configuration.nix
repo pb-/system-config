@@ -28,6 +28,7 @@ in {
     gnuplot
     go
     httpie
+    imagemagick
     lshw
     minetest
     mplayer
@@ -117,6 +118,9 @@ in {
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
+
+  # gpg
+  programs.gnupg.agent.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
