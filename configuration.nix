@@ -33,6 +33,7 @@ in {
     minetest
     mplayer
     openssl
+    pass
     pavucontrol
     pinentry-curses
     pipenv
