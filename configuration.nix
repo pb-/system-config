@@ -11,7 +11,7 @@ let
 in {
   environment.systemPackages = with pkgs; [
     (neovim.override { vimAlias = true; })
-    (texlive.combine { inherit (texlive) scheme-basic standalone microtype pgf xkeyval xcolor; })
+    (texlive.combine { inherit (texlive) scheme-basic standalone microtype pgf xkeyval xcolor koma-script babel-german; })
     android-studio
     bat
     brightnessctl
@@ -22,6 +22,7 @@ in {
     ffmpeg
     file
     firefox
+    gcc
     git
     gnumake
     gnupg
