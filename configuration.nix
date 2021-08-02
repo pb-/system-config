@@ -119,6 +119,7 @@ in {
     git
     gnumake
     gnupg
+    gron
     httpie
     imagemagick
     jdk8
