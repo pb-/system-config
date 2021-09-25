@@ -28,11 +28,14 @@ in {
     gnupg
     gnuplot
     go
+    gron
     httpie
     imagemagick
+    jq
     lshw
     minetest
     mplayer
+    newsboat
     openssl
     pass
     pavucontrol
@@ -70,6 +73,7 @@ in {
   boot.loader.grub.device = "nodev"; # or "nodev" for efi only
 
   services.tlp.enable = true;
+  services.thinkfan.enable = true;
 
   networking.hostName = "caesium"; # Define your hostname.
   networking.networkmanager.enable = true;
