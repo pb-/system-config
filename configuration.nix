@@ -11,8 +11,8 @@ let
 in {
   environment.systemPackages = with pkgs; [
     (neovim.override { vimAlias = true; })
-    (texlive.combine { inherit (texlive) scheme-basic standalone microtype pgf xkeyval xcolor koma-script babel-german; })
-    android-studio
+    (texlive.combine { inherit (texlive) scheme-small standalone microtype pgf xkeyval xcolor koma-script babel-german; })
+    alacritty
     bat
     brightnessctl
     caffeine-ng
@@ -114,6 +114,7 @@ in {
     ggi = "git grep -i";
     gfg = "git ls-files | grep -i";
     cat = "bat -p";
+    note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
   };
 
   fonts.fonts = with pkgs; [
