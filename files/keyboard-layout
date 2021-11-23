@@ -1,3 +1,6 @@
+# Note: there is a bug in gtk 3.24.25 through 3.24.28 that sends overlay1
+#       keys in gtk input fields only after the second keypress.
+#       More info - https://gitlab.gnome.org/GNOME/gtk/-/issues/3673
 xkb_keymap {
   xkb_keycodes {
     include "evdev+aliases(qwerty)"
