@@ -32,6 +32,7 @@ in {
     httpie
     imagemagick
     jq
+    killall
     lshw
     minetest
     mplayer
