@@ -31,7 +31,7 @@ in {
   };
 
   # temporary workaround for non-working WiFi on 5.10
-  boot.kernelPackages = pkgs.linuxPackages_5_12;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_16;
 
   services.tlp.enable = true;
 
@@ -95,6 +95,12 @@ in {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -127,8 +133,10 @@ in {
     imagemagick
     jdk8
     jdk11
+    jdk
     jetbrains.idea-ultimate
     jq
+    killall
     lshw
     mplayer
     openssl
@@ -150,6 +158,7 @@ in {
     unzip
     wget
     whois
+    xclip
     xorg.xkbcomp
     zoom-us
   ];
@@ -165,6 +174,7 @@ in {
     ggi = "git grep -i";
     gfg = "git ls-files | grep -i";
     cat = "bat -p";
+    note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
   };
 
   environment.etc = with pkgs; {
@@ -173,6 +183,7 @@ in {
 
     "jdk8".source = jdk8;
     "jdk11".source = jdk11;
+    "jdk17".source = jdk;
   };
 
   virtualisation.docker.enable = true;
@@ -195,6 +206,7 @@ in {
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  programs.gnupg.agent.enable = true;
 
   # List services that you want to enable:
 
