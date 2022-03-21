@@ -156,6 +156,7 @@ in {
     spotify
     sqlite
     unzip
+    visidata
     wget
     whois
     xclip
