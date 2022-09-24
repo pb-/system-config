@@ -66,7 +66,6 @@ in {
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
-  boot.loader.systemd-boot.enable = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
   #
@@ -75,6 +74,8 @@ in {
 
   services.tlp.enable = true;
   services.thinkfan.enable = true;
+
+  powerManagement.cpuFreqGovernor = "ondemand";
 
   networking.hostName = "caesium"; # Define your hostname.
   networking.networkmanager.enable = true;
