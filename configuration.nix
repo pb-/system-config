@@ -45,6 +45,8 @@ in {
     powertop
     pwgen
     python3
+    qrcp
+    restic
     rlwrap
     scrot
     spotify
@@ -71,6 +73,7 @@ in {
   #
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "nodev"; # or "nodev" for efi only
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.tlp.enable = true;
   services.thinkfan.enable = true;
