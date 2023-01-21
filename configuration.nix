@@ -17,6 +17,7 @@ in {
     brightnessctl
     caffeine-ng
     clojure
+    cmus
     ettercap
     feh
     ffmpeg
