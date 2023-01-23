@@ -121,6 +121,7 @@ in {
     brightnessctl
     caffeine-ng
     clojure
+    cmus
     docker-compose
     ettercap
     feh
