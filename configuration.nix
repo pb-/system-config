@@ -31,7 +31,8 @@ in {
   };
 
   # temporary workaround for non-working WiFi on 5.10
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_16;
+  # even newer kernel to avoid https://discourse.nixos.org/t/weird-audio-behavior-pipewire-pulseaudio-not-working-sometimes/24124
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.tlp.enable = true;
 
@@ -40,6 +41,7 @@ in {
   networking.hostName = "barium"; # Define your hostname.
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
+  programs.nm-applet.indicator = false;
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -83,7 +85,7 @@ in {
   programs.ssh.startAgent = true;
 
   # Configure keymap in X11
-  # services.xserver.layout = "us";
+  # services.xserver.xkbVariant = "altgr-intl";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.
