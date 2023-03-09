@@ -56,6 +56,7 @@ in {
     unzip
     wget
     whois
+    xclip
     xorg.xkbcomp
   ];
 
@@ -115,7 +116,7 @@ in {
 
   environment.shellAliases = {
     glc = "git log --graph --oneline --decorate";
-    gcaan = "git commit -a --amend --no-edit";
+    gcaan = "git commit -a --amend --no-edit --reset-author";
     gg = "git grep";
     ggi = "git grep -i";
     gfg = "git ls-files | grep -i";
