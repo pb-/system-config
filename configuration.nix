@@ -11,7 +11,7 @@ let
 in {
   environment.systemPackages = with pkgs; [
     (neovim.override { vimAlias = true; })
-    (texlive.combine { inherit (texlive) scheme-small standalone microtype pgf xkeyval xcolor koma-script babel-german; })
+    # (texlive.combine { inherit (texlive) scheme-small standalone microtype pgf xkeyval xcolor koma-script babel-german; })
     alacritty
     bat
     brightnessctl
@@ -35,7 +35,6 @@ in {
     jq
     killall
     lshw
-    minetest
     mplayer
     newsboat
     openssl
@@ -51,7 +50,6 @@ in {
     rlwrap
     scrot
     spotify
-    termite
     typespeed
     unzip
     wget
