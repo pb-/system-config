@@ -17,8 +17,8 @@
     allowDiscards = true;
   };
 
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ "kvm-intel" "acpi_call" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/85218ee4-5724-4246-a571-f444dc07c91f";
