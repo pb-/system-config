@@ -111,7 +111,7 @@ in {
     note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     corefonts
     iosevka
   ];
