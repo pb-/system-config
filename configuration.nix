@@ -74,7 +74,7 @@ in {
   services.xserver.libinput.enable = true;
   # services.xserver.libinput.touchpad.accelSpeed = "1";
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     corefonts
     iosevka
   ];
