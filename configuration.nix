@@ -32,7 +32,7 @@ in {
 
   # temporary workaround for non-working WiFi on 5.10
   # even newer kernel to avoid https://discourse.nixos.org/t/weird-audio-behavior-pipewire-pulseaudio-not-working-sometimes/24124
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.tlp.enable = true;
 
@@ -72,6 +72,7 @@ in {
   services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
 
   services.xserver.libinput.enable = true;
+  # services.xserver.libinput.touchpad.accelSpeed = "1";
 
   fonts.fonts = with pkgs; [
     corefonts
@@ -90,6 +91,10 @@ in {
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
+  # services.avahi.enable = true;
+  # services.avahi.nssmdns = true;
+  # # for a WiFi printer
+  # services.avahi.openFirewall = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -122,22 +127,27 @@ in {
     caffeine-ng
     clojure
     cmus
+    csvkit
     docker-compose
     ettercap
     feh
     ffmpeg
     file
     firefox
+    gh
     git
     gnumake
     gnupg
+    grobi
     gron
     httpie
     imagemagick
     jdk8
     jdk11
+    jdk17
     jdk
     jetbrains.idea-ultimate
+    # (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ] )
     jq
     killall
     lshw
@@ -173,12 +183,14 @@ in {
 
   environment.shellAliases = {
     glc = "git log --graph --oneline --decorate";
-    gcaan = "git commit -a --amend --no-edit";
+    gcaan = "git commit -a --amend --no-edit --reset-author";
     gg = "git grep";
     ggi = "git grep -i";
     gfg = "git ls-files | grep -i";
     cat = "bat -p";
     note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
+    ide = "CODEARTIFACT_AUTH_TOKEN=$(gygdev --no-init tools get-codeartifact-token 2>&1 | tail -n 1) idea-ultimate &";
+    mutate = "gygkube job run frankfurt3 sem-google-mutation mutate -- --run-id pb-manual-$(date -u +%Y%m%d%H%M%S%N) --input-path ";
   };
 
   environment.etc = with pkgs; {
@@ -187,10 +199,17 @@ in {
 
     "jdk8".source = jdk8;
     "jdk11".source = jdk11;
-    "jdk17".source = jdk;
+    "jdk17".source = jdk17;
+    "jdk-latest".source = jdk;
   };
 
   virtualisation.docker.enable = true;
+
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.guest.x11 = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  # users.extraGroups.vboxusers.members = [ "pb" ];
 
   services.redshift.enable = true;
   services.redshift.temperature.day = 5000;
