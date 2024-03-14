@@ -11,6 +11,7 @@ let
   my-python-packages = python-packages: with python-packages; [
     pip
     pipx
+    requests
   ];
   python-with-my-packages = pkgs.python3.withPackages my-python-packages;
 in {
