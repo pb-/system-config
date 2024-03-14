@@ -147,8 +147,8 @@ in {
     jdk11
     jdk17
     jdk
-    jetbrains.idea-ultimate
-    # (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ] )
+    # jetbrains.idea-ultimate
+    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ] )
     jq
     killall
     lshw
@@ -231,6 +231,9 @@ in {
   #   enableSSHSupport = true;
   # };
   programs.gnupg.agent.enable = true;
+
+  programs._1password.enable = true;
+  programs._1password-gui.enable = true;
 
   # List services that you want to enable:
 
