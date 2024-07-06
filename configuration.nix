@@ -147,15 +147,15 @@ in {
 
   programs.adb.enable = true;
 
-  # Auto login.
-  services.xserver.displayManager.defaultSession = "none+i3";
+  services.displayManager.defaultSession = "none+i3";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "pb";
+
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "pb";
   services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
 
   # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pb = {
