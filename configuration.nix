@@ -71,6 +71,8 @@ in {
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   services.tlp.enable = true;
   services.thinkfan.enable = true;
 
