@@ -152,7 +152,10 @@ in {
   services.displayManager.autoLogin.user = "pb";
 
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY
+    xinput disable $(xinput list | grep -i touchpad | cut -f 2 | cut -c 4-)
+  '';
 
   # Enable touchpad support.
   services.libinput.enable = true;
