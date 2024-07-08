@@ -123,6 +123,7 @@ in {
   environment.systemPackages = with pkgs; [
     (neovim.override { vimAlias = true; })
     alacritty
+    awscli2
     bat
     brightnessctl
     caffeine-ng
@@ -140,12 +141,14 @@ in {
     gnumake
     gnupg
     grobi
+    gnome.zenity
     gron
     httpie
     imagemagick
     jdk8
     jdk11
     jdk17
+    jdk21
     jdk
     # jetbrains.idea-ultimate
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ] )
@@ -153,6 +156,7 @@ in {
     killall
     lshw
     mplayer
+    oath-toolkit
     openssl
     pass
     pavucontrol
@@ -201,6 +205,7 @@ in {
     "jdk8".source = jdk8;
     "jdk11".source = jdk11;
     "jdk17".source = jdk17;
+    "jdk21".source = jdk21;
     "jdk-latest".source = jdk;
   };
 
