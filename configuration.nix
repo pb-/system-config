@@ -13,6 +13,7 @@ in {
     (neovim.override { vimAlias = true; })
     # (texlive.combine { inherit (texlive) scheme-small standalone microtype pgf xkeyval xcolor koma-script babel-german; })
     alacritty
+    babashka
     bat
     brightnessctl
     caffeine-ng
