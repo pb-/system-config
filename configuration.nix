@@ -66,13 +66,17 @@ in {
   services.xserver.autoRepeatDelay = 330;
   services.xserver.autoRepeatInterval = 25;
 
-  services.xserver.displayManager.defaultSession = "none+i3";
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "pb";
-  services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
+  services.displayManager.defaultSession = "none+i3";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "pb";
 
-  services.xserver.libinput.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY
+    xinput disable $(xinput list | grep -i touchpad | cut -f 2 | cut -c 4-)
+  '';
+
+  services.libinput.enable = true;
   # services.xserver.libinput.touchpad.accelSpeed = "1";
 
   fonts.packages = with pkgs; [
