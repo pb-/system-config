@@ -128,6 +128,7 @@ in {
     (neovim.override { vimAlias = true; })
     alacritty
     awscli2
+    babashka
     bat
     brightnessctl
     caffeine-ng
@@ -198,8 +199,8 @@ in {
     gfg = "git ls-files | grep -i";
     cat = "bat -p";
     note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
-    ide = "CODEARTIFACT_AUTH_TOKEN=$(gygdev --no-init tools get-codeartifact-token 2>&1 | tail -n 1) idea-ultimate &";
-    mutate = "gygkube job run frankfurt3 sem-google-mutation mutate -- --run-id pb-manual-$(date -u +%Y%m%d%H%M%S%N) --input-path ";
+    ide = "CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token --profile production/developer --domain getyourguide --domain-owner 130607246975 --query authorizationToken --output text) idea-ultimate &";
+    mutate = "kubectl gyg create job --namespace sem-google-mutation --context frankfurt3 --from configmap/job-sem-google-mutation-mutate -- --run-id pb-manual-$(date -u +%Y%m%d%H%M%S%N) --input-path";
   };
 
   environment.etc = with pkgs; {
