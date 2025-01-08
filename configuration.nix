@@ -101,8 +101,9 @@ in {
   # # for a WiFi printer
   # services.avahi.openFirewall = true;
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.enable = true;
+
+  services.pipewire.pulse.enable = true;
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -146,7 +147,6 @@ in {
     gnumake
     gnupg
     grobi
-    gnome.zenity
     gron
     httpie
     imagemagick
@@ -169,6 +169,7 @@ in {
     pipenv
     postgresql
     powertop
+    pulseaudio # for pactl
     pwgen
     python-with-my-packages
     rlwrap
@@ -184,6 +185,7 @@ in {
     whois
     xclip
     xorg.xkbcomp
+    zenity
     zoom-us
   ];
 
