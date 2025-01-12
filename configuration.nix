@@ -45,6 +45,7 @@ in {
     pinentry-curses
     pipenv
     powertop
+    pulseaudio
     pwgen
     python3
     qrcp
@@ -134,10 +135,9 @@ in {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  # hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  services.pipewire.pulse.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
