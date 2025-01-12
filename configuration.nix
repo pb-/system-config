@@ -81,6 +81,7 @@ in {
 
   networking.hostName = "lithium"; # Define your hostname.
   networking.networkmanager.enable = true;
+  # networking.networkmanager.wifi.macAddress = "random";
   programs.nm-applet.enable = true;
 
   # Select internationalisation properties.
@@ -112,6 +113,7 @@ in {
     gfg = "git ls-files | grep -i";
     cat = "bat -p";
     note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
+    feh = "feh -A 'magick %F -auto-orient -strip -resize 1024 -quality 85 -unsharp 1.0x1.0+0.6+0.10 /tmp/export-%N'";
   };
 
   fonts.packages = with pkgs; [
