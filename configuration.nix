@@ -114,6 +114,7 @@ in {
     gfg = "git ls-files | grep -i";
     cat = "bat -p";
     note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
+    t = "pushd $(mkdir -v /tmp/$(date -Is | tr -cd [:digit:]) | cut -d \\' -f 2)";
     feh = "feh -A 'magick %F -auto-orient -strip -resize 1024 -quality 85 -unsharp 1.0x1.0+0.6+0.10 /tmp/export-%N'";
   };
 
