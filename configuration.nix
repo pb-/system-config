@@ -146,8 +146,7 @@ in {
   services.xserver.autoRepeatDelay = 330;
   services.xserver.autoRepeatInterval = 25;
 
-  programs.xss-lock.enable = true;
-  programs.xss-lock.lockerCommand = "${pkgs.i3lock}/bin/i3lock -n -c 202020";
+  programs.i3lock.enable = true;
 
   programs.adb.enable = true;
 
