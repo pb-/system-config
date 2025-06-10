@@ -203,6 +203,9 @@ in {
     note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
     ide = "CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token --profile production/developer --domain getyourguide --domain-owner 130607246975 --query authorizationToken --output text) idea-ultimate &";
     mutate = "kubectl gyg create job --namespace sem-google-mutation --context frankfurt3 --from configmap/job-sem-google-mutation-mutate -- --run-id pb-manual-$(date -u +%Y%m%d%H%M%S%N) --input-path";
+    bing-mutate = "printf 'https://mutation-audit-proxy.gygservice.com/validate?vendor=bing&dry_run=false&input_path=%s&run_id=pb-manual-'$(date -u +%Y%m%d%H%M%S%N)'\\n'";
+    t = "pushd $(mkdir -v /tmp/$(date -Is | tr -cd [:digit:]) | cut -d \\' -f 2)";
+    db = "gdbc proxy --env production --name";
   };
 
   environment.etc = with pkgs; {
