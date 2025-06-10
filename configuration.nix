@@ -84,8 +84,7 @@ in {
     iosevka
   ];
 
-  programs.xss-lock.enable = true;
-  programs.xss-lock.lockerCommand = "${pkgs.i3lock}/bin/i3lock -n -c 202020";
+  programs.i3lock.enable = true;
 
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
