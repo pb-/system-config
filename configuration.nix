@@ -84,6 +84,8 @@ in {
     iosevka
   ];
 
+  programs.xss-lock.enable = true;
+  programs.xss-lock.lockerCommand = "${pkgs.i3lock}/bin/i3lock -n -c 202020";
   programs.i3lock.enable = true;
 
   services.openssh.enable = true;
@@ -154,8 +156,8 @@ in {
     jdk17
     jdk21
     jdk
-    # jetbrains.idea-ultimate
-    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ] )
+    jetbrains.idea-ultimate
+    # (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ] )
     jq
     killall
     lshw
