@@ -116,6 +116,7 @@ in {
     note = "vim ~/n/$(date -uIns | tr -dC [:digit:] | cut -c -23)";
     t = "pushd $(mkdir -v /tmp/$(date -Is | tr -cd [:digit:]) | cut -d \\' -f 2)";
     feh = "feh -A 'magick %F -auto-orient -strip -resize 1024 -quality 85 -unsharp 1.0x1.0+0.6+0.10 /tmp/export-%N'";
+    clj-repl = "clj -Sdeps '{:deps {nrepl/nrepl {:mvn/version \"1.0.0\"} cider/cider-nrepl {:mvn/version \"0.42.1\"}}}' -M -m nrepl.cmdline --middleware '[\"cider.nrepl/cider-middleware\"]' --interactive";
   };
 
   fonts.packages = with pkgs; [
