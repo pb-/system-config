@@ -85,6 +85,8 @@ in {
   # networking.networkmanager.wifi.macAddress = "random";
   programs.nm-applet.enable = true;
 
+  programs.command-not-found.enable = true;
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
