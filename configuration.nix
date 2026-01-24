@@ -34,6 +34,7 @@ in {
     httpie
     imagemagick
     jq
+    jujutsu
     killall
     lshw
     mixxx
@@ -62,6 +63,13 @@ in {
   ];
 
   virtualisation.docker.enable = true;
+
+  # Avoid using the default 172.17/.18: clashes with Wifi on ICE
+  virtualisation.docker.daemon.settings.bip = "172.69.0.1/16";
+  virtualisation.docker.daemon.settings.default-address-pools = [{
+    base = "172.69.0.0/16";
+    size = 20;
+  }];
 
   imports =
     [ # Include the results of the hardware scan.
