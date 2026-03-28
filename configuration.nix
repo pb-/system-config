@@ -33,6 +33,7 @@ in {
     gron
     httpie
     imagemagick
+    jdk
     jq
     jujutsu
     killall
