@@ -6,11 +6,11 @@
 
 let
   compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
-    ${pkgs.xorg.xkbcomp}/bin/xkbcomp -w 0 ${files/keyboard-layout} $out
+    ${pkgs.xkbcomp}/bin/xkbcomp -w 0 ${files/keyboard-layout} $out
   '';
 in {
   environment.systemPackages = with pkgs; [
-    (neovim.override { vimAlias = true; })
+    (neovim.override { vimAlias = true; withPython3 = true; })
     # (texlive.combine { inherit (texlive) scheme-small standalone microtype pgf xkeyval xcolor koma-script babel-german; })
     alacritty
     babashka
@@ -60,7 +60,7 @@ in {
     wget
     whois
     xclip
-    xorg.xkbcomp
+    xkbcomp
   ];
 
   virtualisation.docker.enable = true;
@@ -162,15 +162,13 @@ in {
   programs.xss-lock.lockerCommand = "${pkgs.i3lock}/bin/i3lock -n -c 202020";
   programs.i3lock.enable = true;
 
-  programs.adb.enable = true;
-
   services.displayManager.defaultSession = "none+i3";
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "pb";
 
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY
+    ${pkgs.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY
     xinput disable $(xinput list | grep -i touchpad | cut -f 2 | cut -c 4-)
   '';
 
