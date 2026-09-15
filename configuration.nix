@@ -59,6 +59,9 @@ in {
     description = "Paul";
     extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" ];
     packages = with pkgs; [ ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHyGPagGFT9C5+g5QElvhOS6MxbNkWc9HxdUXsQosrk pb@lithium"
+    ];
   };
 
   # Allow unfree packages
