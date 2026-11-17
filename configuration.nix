@@ -54,7 +54,6 @@ in {
     restic
     rlwrap
     scrot
-    spotify
     typespeed
     unzip
     wget
@@ -65,12 +64,28 @@ in {
 
   virtualisation.docker.enable = true;
 
-  # Avoid using the default 172.17/.18: clashes with Wifi on ICE
-  virtualisation.docker.daemon.settings.bip = "172.69.0.1/16";
+  ## # Avoid using the default 172.17/.18: clashes with Wifi on ICE
+  virtualisation.docker.daemon.settings.bip = "172.20.0.1/16";
   virtualisation.docker.daemon.settings.default-address-pools = [{
-    base = "172.69.0.0/16";
-    size = 20;
+    base = "172.20.0.0/16";
+    size = 24;
   }];
+
+  # could work for wifionice
+  # networking.resolvconf.dnsExtensionMechanism = false;
+
+  programs.captive-browser = {
+    enable = true;
+    interface = "wlp0s20f3";
+  };
+
+  services.resolved.enable = true;
+  # services.avahi.ipv6 = false;
+  # networking.enableIPv6 = false;
+  # networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+  # networking.dhcpcd.extraConfig = ''
+  #   nohook resolv.conf
+  # '';
 
   imports =
     [ # Include the results of the hardware scan.
@@ -91,7 +106,7 @@ in {
 
   networking.hostName = "lithium"; # Define your hostname.
   networking.networkmanager.enable = true;
-  # networking.networkmanager.wifi.macAddress = "random";
+  networking.networkmanager.wifi.macAddress = "random";
   programs.nm-applet.enable = true;
 
   programs.command-not-found.enable = true;
